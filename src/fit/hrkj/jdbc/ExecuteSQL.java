@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package fit.hrkj.jdbc;
 
 import java.io.FileInputStream;
