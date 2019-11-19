@@ -36,7 +36,7 @@ public class ExecuteSQL {
 	/**
 	 * 插入数据的SQL语句
 	 */
-	private static String insertSQL = "insert into jdbc_test(name,age) " + "values('a',18) , ('b',19) , ('c',20)";
+	private static String insertSQL = "insert into jdbc_test(name,age) " + "values('ydh',18) , ('hrkj',19) , ('zkhrkj',20)";
 	/**
 	 * 查询数据的SQL语句
 	 */
@@ -117,25 +117,16 @@ public class ExecuteSQL {
 				try (ResultSet resultSet = statement.getResultSet();) {
 					// ResultSetMetaData是用于分析结果集的元数据接口
 					ResultSetMetaData metaData = resultSet.getMetaData();
-					int columnCount = metaData.getColumnCount();
-					// 迭代输出列名
-					System.out.println("+---------------+---------------+---------------+");
-					for (int i = 1; i <= columnCount; i++) {
-						System.out.print("|\t" + metaData.getColumnName(i) + "\t");
-					}
-					System.out.println("|");
-					System.out.println("+---------------+---------------+---------------+");
+					// 展示表格的列名
+					TableFormatter.showHeader(4, resultSet);
 					// 迭代输出ResultSet对象
 					while (resultSet.next()) {
 						// 依次输出每列的值
-						for (int i = 1; i <= columnCount; i++) {
-							System.out.print("|\t" + resultSet.getString(i) + "\t");
-						}
-						System.out.println("|");
-						
-					}
-					System.out.println("+---------------+---------------+---------------+");
+						TableFormatter.showBody();
 
+					}
+					// 展示表格的结尾
+					TableFormatter.showFooter();
 				}
 
 			} else {
