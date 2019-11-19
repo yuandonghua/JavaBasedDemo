@@ -119,8 +119,8 @@ public class TableFormatter {
 		// 列名这行字符串
 		String columnString = "|";
 		for (int i = 1; i <= columnCount; i++) {
-			// 每列的值
-			String columnValue = currentResultSet.getString(i);
+			// 每列的值保证不能为空
+			String columnValue = currentResultSet.getString(i)+"";
 			// 列值的长度
 			int columnValueLength = columnValue.length();
 
