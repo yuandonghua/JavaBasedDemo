@@ -3,6 +3,9 @@ package fit.hrkj.jdbc;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 /**
@@ -37,6 +40,10 @@ public class DriverTool {
 	 * 工具类实例
 	 */
 	private static DriverTool instance;
+	/**
+	 * 数据库连接对象
+	 */
+	private static Connection connection;
 
 	public static DriverTool getInstance() {
 		if (instance == null) {
@@ -72,11 +79,36 @@ public class DriverTool {
 		try {
 			// 加载驱动
 			Class.forName(driver);
+			connection = DriverManager.getConnection(DriverTool.getInstance().getUrl(),
+					DriverTool.getInstance().getUser(), DriverTool.getInstance().getPassword());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("没有找到驱动，请检查项目的classpath中是否已经添加此驱动");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+
+			if (e.getMessage().contains("Public Key Retrieval is not allowed")) {
+				System.out.println("连接url后面需要加上allowPublicKeyRetrieval=true");
+			} else {
+				System.out.println("数据库连接失败");
+			}
+			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @return the connection
+	 */
+	public Connection getConnection() {
+		return connection;
+	}
+
+	/**
+	 * @param connection the connection to set
+	 */
+	public void setConnection(Connection connection) {
+		DriverTool.connection = connection;
 	}
 
 	/**

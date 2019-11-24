@@ -107,7 +107,7 @@ public class TableFormatter {
 	}
 
 	/**
-	 * 展示表格记录
+	 * 展示表格一行记录
 	 * 
 	 * @throws SQLException 遇到的SQL异常
 	 */
@@ -119,8 +119,8 @@ public class TableFormatter {
 		// 列名这行字符串
 		String columnString = "|";
 		for (int i = 1; i <= columnCount; i++) {
-			// 每列的值保证不能为空
-			String columnValue = currentResultSet.getString(i)+"";
+			// 每列的值保证不能为空,把Object类型转为String预防大对象内容过多展示不下
+			String columnValue = currentResultSet.getObject(i) + "";
 			// 列值的长度
 			int columnValueLength = columnValue.length();
 
@@ -149,10 +149,23 @@ public class TableFormatter {
 			}
 			// 拼接每列列值字符串
 			columnString += columnLeftBlank + columnValue + columnrightBlank + "|";
-
 		}
 		// 打印列值这一行
 		System.out.println(columnString);
+	}
+
+	/**
+	 * 展示表格所有行记录
+	 * 
+	 * @throws SQLException 遇到的SQL异常
+	 */
+	public static void showBodyAll() throws SQLException {
+		// 迭代输出ResultSet对象
+		while (currentResultSet.next()) {
+			// 依次输出每行记录
+			TableFormatter.showBody();
+
+		}
 	}
 
 	/**
@@ -163,20 +176,4 @@ public class TableFormatter {
 		System.out.println(tableTopline);
 	}
 
-	/**
-	 * 统计字符串中汉字的个数
-	 * 
-	 * @param content
-	 * @return
-	 */
-	public static int getChineseSize(String content) {
-		int count = 0;// 汉字数量
-		String regEx = "[\\u4e00-\\u9fa5]";
-		Pattern p = Pattern.compile(regEx);
-		Matcher m = p.matcher(content);
-		while (m.find()) {
-			count = count + 1;
-		}
-		return count;
-	}
 }
