@@ -19,7 +19,7 @@ public class ExecTest {
 		//运行记事本程序
 //		rt.exec("notepad.exe");
 		//macOS上运行QQ浏览器
-		rt.exec("/Applications/QQBrowser.app/Contents/MacOS/QQBrowser");
+		rt.exec("/Applications/360Chrome.app");
 //		rt.exec("/Applications/QQLive.app/Contents/MacOS/QQLive");
 		
 	}

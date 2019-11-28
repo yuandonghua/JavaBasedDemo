@@ -1,7 +1,7 @@
 package fit.hrkj.nativetest;
 
 /**
- * <br>
+ * 演示使用native方法<br>
  * 2019年5月24日 上午9:58:44
  * 
  * @author 华软科技
@@ -17,7 +17,9 @@ public class HelloNative {
 	public static native void sayHello();
 
 	/**
-	 * @param args
+	 * 程序入口
+	 * 
+	 * @param args 入口参数
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
