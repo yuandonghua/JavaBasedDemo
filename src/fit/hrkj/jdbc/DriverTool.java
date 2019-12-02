@@ -98,6 +98,7 @@ public class DriverTool {
 	}
 
 	/**
+	 * 获取缓存的数据库连接
 	 * @return the connection
 	 */
 	public Connection getConnection() {
@@ -105,77 +106,90 @@ public class DriverTool {
 	}
 
 	/**
-	 * @param connection the connection to set
+	 * 获取新的数据库连接
+	 * @return the connection
 	 */
-	public void setConnection(Connection connection) {
-		DriverTool.connection = connection;
+	public Connection getNewConnection() {
+		initParam(paramFile);
+		return connection;
 	}
 
+
 	/**
-	 * @return the paramFile
+	 * 获取数据库信息的配置文件
+	 * @return 数据库信息的配置文件
 	 */
 	public static String getParamFile() {
 		return paramFile;
 	}
 
 	/**
-	 * @param paramFile the paramFile to set
+	 * 设置数据库信息的配置文件
+	 * @param paramFile 数据库信息的配置文件
 	 */
 	public static void setParamFile(String paramFile) {
 		DriverTool.paramFile = paramFile;
 	}
 
 	/**
-	 * @return the driver
+	 * 获取数据库的驱动名
+	 * @return 数据库的驱动名
 	 */
 	public String getDriver() {
 		return driver;
 	}
 
 	/**
-	 * @param driver the driver to set
+	 * 设置数据库的驱动名
+	 * @param driver 数据库的驱动名
 	 */
 	public void setDriver(String driver) {
 		this.driver = driver;
 	}
 
 	/**
-	 * @return the url
+	 * 获取数据库的连接地址
+	 * @return 数据库的连接地址
 	 */
 	public String getUrl() {
 		return url;
 	}
 
 	/**
-	 * @param url the url to set
+	 * 设置数据库的连接地址
+	 * @param url 数据库的连接地址
 	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
 	/**
-	 * @return the user
+	 * 获取数据库的用户
+	 * @return 数据库的用户
 	 */
 	public String getUser() {
 		return user;
 	}
 
 	/**
-	 * @param user the user to set
+	 * 设置数据库的用户
+	 * @param user 数据库的用户
 	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
 
 	/**
-	 * @return the password
+	 * 获取数据库用户的密码
+	 * @return 用户的密码
 	 */
 	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * @param password the password to set
+	 * 设置数据库用户的密码
+	 * @param password 用户的密码
 	 */
 	public void setPassword(String password) {
 		this.password = password;

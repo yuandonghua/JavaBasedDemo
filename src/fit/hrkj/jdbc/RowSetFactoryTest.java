@@ -7,7 +7,7 @@ import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
 
 /**
- * 演示JdbcRowSet的可滚动、可修改特性<br>
+ * 演示JdbcRowSet的可滚动特性<br>
  * 2019年11月28日上午10:20:23
  * 
  * @author 华软科技
@@ -15,9 +15,9 @@ import javax.sql.rowset.RowSetProvider;
  */
 public class RowSetFactoryTest {
 	/**
-	 * 
+	 * 查询user表的SQL语句
 	 */
-	private static String sql="select * from user";
+	private static String sql = "select * from user";
 
 	/**
 	 * 程序入口
@@ -43,16 +43,22 @@ public class RowSetFactoryTest {
 			jdbcRowSet.setUrl(DriverTool.getInstance().getUrl());
 			jdbcRowSet.setUsername(DriverTool.getInstance().getUser());
 			jdbcRowSet.setPassword(DriverTool.getInstance().getPassword());
-			//设置查询语句
+			// 设置查询语句
 			jdbcRowSet.setCommand(sql);
-			//执行查询
+			// 执行查询
 			jdbcRowSet.execute();
 			jdbcRowSet.afterLast();
-			//向前滚动结果集
-			while (jdbcRowSet.previous()){
-				
+			TableFormatter.showHeader(jdbcRowSet);
+			// 向前滚动结果集
+			while (jdbcRowSet.previous()) {
+				// 不可更新
+				if (jdbcRowSet.getInt(4) > 1) {
+					jdbcRowSet.updateString("password", "1111");
+					jdbcRowSet.updateRow();
+				}
+				TableFormatter.showBody();
 			}
-
+			TableFormatter.showFooter();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
