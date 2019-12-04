@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 /**
@@ -44,6 +45,8 @@ public class DriverTool {
 	 * 数据库连接对象
 	 */
 	private static Connection connection;
+
+	private static Statement statement;
 
 	public static DriverTool getInstance() {
 		if (instance == null) {
@@ -98,7 +101,8 @@ public class DriverTool {
 	}
 
 	/**
-	 * 获取缓存的数据库连接
+	 * 获取数据库连接
+	 * 
 	 * @return the connection
 	 */
 	public Connection getConnection() {
@@ -106,7 +110,41 @@ public class DriverTool {
 	}
 
 	/**
+	 * 使用默认数据库连接
+	 * 
+	 * @param autoCommit 是否自动提交：false关闭自动提交，true开启自动提交
+	 * @return 数据库连接
+	 */
+	public DriverTool useDefaultConnection(boolean autoCommit) {
+		try {
+			connection.setAutoCommit(autoCommit);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("开启事务失败");
+		}
+		return this;
+	}
+
+	/**
+	 * 创建Statement
+	 * 
+	 * @return 返回新的Statement
+	 */
+	public Statement createStatement() {
+		try {
+			return connection.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("创建Statement失败");
+		}
+		return null;
+	}
+
+	/**
 	 * 获取新的数据库连接
+	 * 
 	 * @return the connection
 	 */
 	public Connection getNewConnection() {
@@ -114,9 +152,9 @@ public class DriverTool {
 		return connection;
 	}
 
-
 	/**
 	 * 获取数据库信息的配置文件
+	 * 
 	 * @return 数据库信息的配置文件
 	 */
 	public static String getParamFile() {
@@ -125,6 +163,7 @@ public class DriverTool {
 
 	/**
 	 * 设置数据库信息的配置文件
+	 * 
 	 * @param paramFile 数据库信息的配置文件
 	 */
 	public static void setParamFile(String paramFile) {
@@ -133,6 +172,7 @@ public class DriverTool {
 
 	/**
 	 * 获取数据库的驱动名
+	 * 
 	 * @return 数据库的驱动名
 	 */
 	public String getDriver() {
@@ -141,6 +181,7 @@ public class DriverTool {
 
 	/**
 	 * 设置数据库的驱动名
+	 * 
 	 * @param driver 数据库的驱动名
 	 */
 	public void setDriver(String driver) {
@@ -149,6 +190,7 @@ public class DriverTool {
 
 	/**
 	 * 获取数据库的连接地址
+	 * 
 	 * @return 数据库的连接地址
 	 */
 	public String getUrl() {
@@ -157,6 +199,7 @@ public class DriverTool {
 
 	/**
 	 * 设置数据库的连接地址
+	 * 
 	 * @param url 数据库的连接地址
 	 */
 	public void setUrl(String url) {
@@ -165,6 +208,7 @@ public class DriverTool {
 
 	/**
 	 * 获取数据库的用户
+	 * 
 	 * @return 数据库的用户
 	 */
 	public String getUser() {
@@ -173,6 +217,7 @@ public class DriverTool {
 
 	/**
 	 * 设置数据库的用户
+	 * 
 	 * @param user 数据库的用户
 	 */
 	public void setUser(String user) {
@@ -181,6 +226,7 @@ public class DriverTool {
 
 	/**
 	 * 获取数据库用户的密码
+	 * 
 	 * @return 用户的密码
 	 */
 	public String getPassword() {
@@ -189,9 +235,35 @@ public class DriverTool {
 
 	/**
 	 * 设置数据库用户的密码
+	 * 
 	 * @param password 用户的密码
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * 关闭资源
+	 */
+	public void close() {
+		// TODO Auto-generated method stub
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("关闭数据库连接失败");
+			}
+		}
+		if (statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("关闭statement失败");
+			}
+		}
 	}
 }
