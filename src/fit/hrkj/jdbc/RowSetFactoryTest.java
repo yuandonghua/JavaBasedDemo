@@ -36,9 +36,9 @@ public class RowSetFactoryTest {
 			e1.printStackTrace();
 			System.out.println("创建工厂类失败");
 		}
-		try (
-				// 使用RowSetFactory创建默认的JdbcRowSet实例
+		try (// 使用RowSetFactory创建默认的JdbcRowSet实例
 				JdbcRowSet jdbcRowSet = factory.createJdbcRowSet();) {
+
 			// 设置必要的连接信息
 			jdbcRowSet.setUrl(DriverTool.getInstance().getUrl());
 			jdbcRowSet.setUsername(DriverTool.getInstance().getUser());

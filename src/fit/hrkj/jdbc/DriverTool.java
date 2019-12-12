@@ -1,5 +1,6 @@
 package fit.hrkj.jdbc;
 
+import java.beans.PropertyVetoException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,6 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 /**
  * 数据库驱动加载工具<br>
  * 2019年11月19日下午8:39:42
@@ -17,6 +22,7 @@ import java.util.Properties;
  * @version 1.0
  */
 public class DriverTool {
+
 	/**
 	 * 数据库连接参数配置文件
 	 */
@@ -47,6 +53,22 @@ public class DriverTool {
 	private static Connection connection;
 
 	private static Statement statement;
+	/**
+	 * DBCP数据源，整个程序只需要一个
+	 */
+	private static BasicDataSource BDS;
+	/**
+	 * C3P0数据源，整个程序只需要一个
+	 */
+	private static ComboPooledDataSource CPDS;
+	/**
+	 * C3P0连接池标识
+	 */
+	public static final String C3P0 = "C3P0";
+	/**
+	 * DBCP连接池标识
+	 */
+	public static final String DBCP = "DBCP";
 
 	public static DriverTool getInstance() {
 		if (instance == null) {
@@ -61,7 +83,7 @@ public class DriverTool {
 	 * 
 	 * @param paramFile 文件地址
 	 */
-	public void initParam(String paramFile) {
+	public DriverTool initParam(String paramFile) {
 		// 创建属性对象
 		Properties props = new Properties();
 		// 加载属性文件
@@ -79,6 +101,71 @@ public class DriverTool {
 		url = props.getProperty("url");
 		user = props.getProperty("user");
 		password = props.getProperty("password");
+		return this;
+	}
+
+	/**
+	 * 初始化DBCP参数
+	 * 
+	 * @return 数据源对象，用来获取Connection
+	 */
+	private void initDBCP() {
+		// TODO Auto-generated method stub
+		// 创建数据源对象
+		BDS = new BasicDataSource();
+		// 设置连接池所需的驱动
+		BDS.setDriverClassName(driver);
+		// 设置连接数据库的URI
+		BDS.setUrl(url);
+		// 设置连接数据库的用户名
+		BDS.setUsername(user);
+		// 设置连接数据库的密码
+		BDS.setPassword(password);
+		// 设置连接池的初始连接数
+		BDS.setInitialSize(5);
+		// 设置连接池最多可有多少个活动连接数
+		BDS.setMaxTotal(20);
+		// 设置连接池中最少有2个空闲的连接
+		BDS.setMaxIdle(2);
+	}
+
+	/**
+	 * 初始化C3P0参数
+	 */
+	private void initC3P0() {
+		// 创建连接池实例
+		CPDS = new ComboPooledDataSource();
+		// 设置连接池连接数据库所需的驱动
+		try {
+			CPDS.setDriverClass(driver);
+			// 设置连接数据库的URL
+			CPDS.setJdbcUrl(url);
+			// 设置连接数据库的用户名
+			CPDS.setUser(user);
+			// 设置连接数据库的密码
+			CPDS.setPassword(password);
+			// 设置连接池的最大连接数
+			CPDS.setMaxPoolSize(20);
+			// 设置连接池的最小连接数
+			CPDS.setMinPoolSize(2);
+			// 设置连接池的初始连接数
+			CPDS.setInitialPoolSize(10);
+			// 设置连接池缓存的Statement的最大数
+			CPDS.setMaxStatements(100);
+		} catch (PropertyVetoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("C3P0加载MySQL驱动失败");
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 获取Connection，但不使用连接池管理Connection
+	 * 
+	 * @return 数据库连接
+	 */
+	public Connection getConnection() {
 		try {
 			// 加载驱动
 			Class.forName(driver);
@@ -86,8 +173,8 @@ public class DriverTool {
 					DriverTool.getInstance().getUser(), DriverTool.getInstance().getPassword());
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			System.out.println("没有找到驱动，请检查项目的classpath中是否已经添加此驱动");
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 
@@ -98,6 +185,7 @@ public class DriverTool {
 			}
 			e.printStackTrace();
 		}
+		return connection;
 	}
 
 	/**
@@ -105,7 +193,39 @@ public class DriverTool {
 	 * 
 	 * @return the connection
 	 */
-	public Connection getConnection() {
+	public Connection getConnection(String poolName) {
+		// 不使用连接池管理Connection
+		if (poolName == null) {
+			getConnection();
+		}
+
+		// 使用DBCP连接池
+		if (poolName.equals(DBCP)) {
+			initDBCP();
+			try {
+				// 获取Connection
+				connection = BDS.getConnection();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("使用DBCP连接池的方式获取Connection失败");
+				e.printStackTrace();
+			}
+		}
+		// 使用C3P0连接池
+		if (poolName.equals(C3P0)) {
+			initC3P0();
+			try {
+				// 获取Connection
+				connection = CPDS.getConnection();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("使用C3P0连接池的方式获取Connection失败");
+				e.printStackTrace();
+			}
+		}
+
 		return connection;
 	}
 

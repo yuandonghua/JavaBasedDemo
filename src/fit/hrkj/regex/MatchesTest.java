@@ -17,21 +17,37 @@ public class MatchesTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] mails = { "yuandonghua@hrkj.fit", "zhusiwei@hrkj.fit", "wangzhongyuan@hrkj.fit", "abc123@163.com",
-				"1348474384@qq.com", "123qwe@abc.xx" };
-		String mailRegEx = "\\w{3,20}@\\w+\\.(fit|com)";
-		Pattern pattern = Pattern.compile(mailRegEx);
-		Matcher matcher = null;
-		for (String mail : mails) {
-			if (matcher == null) {
-				matcher = pattern.matcher(mail);
-			} else {
-				matcher.reset(mail);
-			}
-			String result = mail + (matcher.matches() ? "是" : "不是") + "一个有效的邮件地址";
-			System.out.println(result);
-		}
 		
+		String a="heeee";
+		Pattern pattern = Pattern.compile("he*");
+		Matcher matcher = pattern.matcher(a);
+		Matcher reset = matcher.reset("world");
+		
+		
+		System.out.println(matcher.find());
+		System.out.println(matcher.group());
+		System.out.println(matcher.start());
+		System.out.println(matcher.end());
+		System.out.println(matcher.lookingAt());
+		System.out.println(matcher.matches());
+//		System.out.println(matcher.end());
+		
+//		
+//		String[] mails = { "yuandonghua@hrkj.fit", "zhusiwei@hrkj.fit", "wangzhongyuan@hrkj.fit", "abc123@163.com",
+//				"1348474384@qq.com", "123qwe@abc.xx" };
+//		String mailRegEx = "\\w{3,20}@\\w+\\.(fit|com)";
+//		Pattern pattern = Pattern.compile(mailRegEx);
+//		Matcher matcher = null;
+//		for (String mail : mails) {
+//			if (matcher == null) {
+//				matcher = pattern.matcher(mail);
+//			} else {
+//				matcher.reset(mail);
+//			}
+//			String result = mail + (matcher.matches() ? "是" : "不是") + "一个有效的邮件地址";
+//			System.out.println(result);
+//		}
+//		
 		
 	}
 

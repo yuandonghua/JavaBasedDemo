@@ -37,7 +37,7 @@ public class CalendarTest {
 		Calendar c1 = Calendar.getInstance();
 		c1.set(2000, 1, 1, 0, 0, 0);
 		System.out.println("修改前: "+c1.getTime());
-		c1.add(MONTH, 6);
+		c1.add(MONTH, 16);
 		System.out.println("修改后: "+c1.getTime());
 		
 		
@@ -58,6 +58,17 @@ public class CalendarTest {
 		System.out.println("修改前: "+c4.getTime());
 		c4.roll(MONTH, 13);
 		System.out.println("修改后: "+c4.getTime());
+		int actualMaximum = c4.getActualMaximum(HOUR_OF_DAY);
+		System.out.println("actualMaximum:"+actualMaximum);
+		
+		
+		
+		Calendar c5 = Calendar.getInstance();
+		c5.set(2000, 0, 31, 0, 0, 0);
+		System.out.println("修改前: "+c5.getTime());
+		c5.add(DATE, 1);
+		System.out.println("修改后: "+c5.getTime());
+		
 		
 	}
 }

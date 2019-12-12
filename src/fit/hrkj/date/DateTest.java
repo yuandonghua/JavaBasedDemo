@@ -22,6 +22,7 @@ public class DateTest {
 		System.out.println("d2: " + d2);
 		System.out.println("d1.compareTo(d2): " + d2.compareTo(d1));
 		System.out.println("d1.before(d2): " + d1.before(d2));
+		System.out.println("d1.after(d2): " + d1.after(d2));
 	}
 
 }

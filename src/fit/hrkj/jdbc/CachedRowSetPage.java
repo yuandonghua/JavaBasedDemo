@@ -38,10 +38,10 @@ public class CachedRowSetPage {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		CachedRowSetPage crsp = new CachedRowSetPage();
-		CachedRowSet crs = crsp.query(sql, pageSize, page);//①
+		CachedRowSet crs = crsp.query(sql, pageSize, page);// ①
 		try {
 			TableFormatter.showHeader(crs);
-			//向后滚动结果集
+			// 向后滚动结果集
 			while (crs.next()) {
 				TableFormatter.showBody();
 			}
@@ -62,7 +62,7 @@ public class CachedRowSetPage {
 	 */
 	public CachedRowSet query(String sql, int pageSize, int page) {
 		// 获取数据库连接
-		Connection connection = DriverTool.getInstance().getConnection();
+		Connection connection = DriverTool.getInstance().getConnection(DriverTool.DBCP);
 		try (Statement statement = connection.createStatement(); ResultSet rs = statement.executeQuery(sql);) {
 			// 使用RowSetFactory创建RowSetFactory
 			RowSetFactory factory = RowSetProvider.newFactory();

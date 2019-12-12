@@ -44,7 +44,7 @@ public class ResultSetTest {
 			rs.last();
 			int rowCount = rs.getRow();
 			System.out.println("rowCount:" + rowCount);
-			TableFormatter.showHeader(rs);
+			TableFormatter.showHeader(23,rs);
 			for (int i = rowCount; i > 0; i--) {
 				// 把指针移动到第i行
 				boolean absolute = rs.absolute(i);
