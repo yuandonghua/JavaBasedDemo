@@ -10,4 +10,5 @@ module JavaBasedDemo {
 	requires commons.dbcp2;
 	requires c3p0;
 	requires java.desktop;
+	requires jdk.compiler;
 }
