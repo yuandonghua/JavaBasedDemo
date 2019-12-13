@@ -1,14 +1,19 @@
 package fit.hrkj.object;
 
 import java.util.Properties;
-
+/**
+ * äººç±»<br>  
+ * 2019å¹´12æœˆ13æ—¥ä¸‹åˆ8:02:43
+ * @author åè½¯ç§‘æŠ€
+ * @version 1.0
+ */
 public class Person {
-	// ÈËµÄÃû×Ö
+	// äººçš„åå­—
 	public String name;
-	// ÈËµÄ×´Ì¬
+	// äººçš„çŠ¶æ€
 	public String status;
-	// ÈËºôÎü¿ÕÆø
-	public static String breathe = "ÑõÆø";
+	// äººå‘¼å¸ç©ºæ°”
+	public static String breathe = "æ°§æ°”";
 
 	public Person(String name) {
 		setName(name);
@@ -26,9 +31,9 @@ public class Person {
 	}
 
 	/**
-	 * ÉèÖÃÈËµÄ×´Ì¬
+	 * è®¾ç½®äººçš„çŠ¶æ€
 	 * 
-	 * @param s Ã¦,ÏĞ
+	 * @param s å¿™,é—²
 	 */
 	public Person setStatus(String s) {
 		status = s;
@@ -37,13 +42,13 @@ public class Person {
 	}
 
 	/**
-	 * ½Óµç»°
+	 * æ¥ç”µè¯
 	 * 
-	 * @param status ½Óµç»°µÄ×´Ì¬
-	 * @return ÊÇ·ñ½Óµç»°
+	 * @param status æ¥ç”µè¯çš„çŠ¶æ€
+	 * @return æ˜¯å¦æ¥ç”µè¯
 	 */
 	public boolean answerPhoe() {
-		if (this.status.equals("Ã¦")) {
+		if (this.status.equals("å¿™")) {
 			return false;
 		} else {
 			return true;
@@ -51,17 +56,17 @@ public class Person {
 	}
 
 	/**
-	 * Ê¹ÓÃÊÖ»ú¸øÄ³Ä³´òµç»°
+	 * ä½¿ç”¨æ‰‹æœºç»™æŸæŸæ‰“ç”µè¯
 	 * 
-	 * @param phone   ÄãµÄÊÖ»ú
-	 * @param persion ¸øË­´òµç»°
+	 * @param phone   ä½ çš„æ‰‹æœº
+	 * @param persion ç»™è°æ‰“ç”µè¯
 	 */
 	public void usePhoneCallPerson(Phone phone, Person person) {
 		phone.call(this, person);
 	}
 
 	public static void eat() {
-		System.out.println("»á³Ô·¹");
+		System.out.println("ä¼šåƒé¥­");
 	}
 
 }

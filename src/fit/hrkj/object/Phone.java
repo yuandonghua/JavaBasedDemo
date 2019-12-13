@@ -1,26 +1,41 @@
 package fit.hrkj.object;
 
+/**
+ * æ‰‹æœºç±»<br>
+ * 2019å¹´12æœˆ13æ—¥ä¸‹åˆ8:00:39
+ * 
+ * @author åè½¯ç§‘æŠ€
+ * @version 1.0
+ */
 public class Phone {
-	// ??¡·¨²¦Ì?1/4???
+	/**
+	 * æ‰‹æœºçš„ä»·æ ¼
+	 */
 	public int price;
-	// ??¡·¨²¦Ì???¡Á?
+	/**
+	 * æ‰‹æœºçš„åå­—
+	 */
 	public String name;
-	// ??¡·¨²¦Ì????¡¶
-	public   String color;
-	// ??¡·¨²3?¦Ì???
-	public  String usb ;
+	/**
+	 * æ‰‹æœºçš„é¢œè‰²
+	 */
+	public String color;
+	/**
+	 * æ‰‹æœºçš„å……ç”µæ¥å£
+	 */
+	public String usb;
 
 	/**
-	 * ????¡·¨²?¨¨???¡·????¡Á?
+	 * ????ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½???ï¿½ï¿½????ï¿½ï¿½?
 	 * 
-	 * @param name ??¡·¨²??¡Á?
+	 * @param name ??ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½?
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * ?¨¨????¡·¨²¦Ì?1/4???
+	 * ?ï¿½ï¿½????ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?1/4???
 	 * 
 	 * @param p 1/4???
 	 */
@@ -33,35 +48,36 @@ public class Phone {
 	}
 
 	/**
-	 * ???ae???¡¤
+	 * ç©æ¸¸æˆ
 	 * 
-	 * @param gameName ???¡¤¦Ì???¡Á?
+	 * @param gameName æ¸¸æˆåå­—
 	 */
 	public void playGame(String gameName) {
 		if (gameName.equals("??????????")) {
-			System.out.println("2¡·?2¡·????????¡¤:" + gameName);
-		} else if (gameName.equals("??1/4¡è?1/23?")) {
-			System.out.println("?2¡·?3?1/4|:" + gameName);
+			System.out.println("2ï¿½ï¿½?2ï¿½ï¿½????????ï¿½ï¿½:" + gameName);
+		} else if (gameName.equals("??1/4ï¿½ï¿½?1/23?")) {
+			System.out.println("?2ï¿½ï¿½?3?1/4|:" + gameName);
 		} else {
-			System.out.println("2¡·?¡·?¡§?2¡·?:" + gameName);
+			System.out.println("2ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?2ï¿½ï¿½?:" + gameName);
 		}
 
 	}
 
 	/**
-	 * ???3?3?¨°¦Ì?¡·¡ã
+	 * ç»™åˆ«äººæ‰“ç”µè¯
 	 * 
-	 * @param p ?3?3
+	 * @param p1 è°æ‰“çš„
+	 * @param p2 ç»™è°æ‰“
 	 */
 	public void call(Person p1, Person p2) {
 
 		if (p2.answerPhoe()) {
-			System.out.println(p1.getName() + "??" + p2.getName() + "?¨°¦Ì?¡·¡ã,?¨°?¡§??");
+			System.out.println(p1.getName() + "??" + p2.getName() + "?ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½,?ï¿½ï¿½?ï¿½ï¿½??");
 		} else {
-			System.out.println(p1.getName() + "??" + p2.getName() + "?¨°¦Ì?¡·¡ã,?¡·???¨°?¡§");
+			System.out.println(p1.getName() + "??" + p2.getName() + "?ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½,?ï¿½ï¿½???ï¿½ï¿½?ï¿½ï¿½");
 
 		}
 
 	}
-	
+
 }

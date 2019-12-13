@@ -1,5 +1,10 @@
 package fit.hrkj.object;
-
+/**
+ * æ¼”ç¤ºäººç±»ã€æ‰‹æœºç±»<br>  
+ * 2019å¹´12æœˆ13æ—¥ä¸‹åˆ8:02:54
+ * @author åè½¯ç§‘æŠ€
+ * @version 1.0
+ */
 public class PersonTest {
 
 	public static void main(String[] args) {
@@ -9,19 +14,19 @@ public class PersonTest {
 		
 		
 		
-		Person zhangXiang=new Person("ÕÅÏó");
+		Person zhangXiang=new Person("å¼ è±¡");
 		
 		Phone mate=new Phone();
-		mate.setName("»ªÎªmate30 pro");
+		mate.setName("åä¸ºmate30 pro");
 		mate.setPrice(6888);
-		mate.setColor("×ÏÉ«");
+		mate.setColor("ç´«è‰²");
 		mate.color="";
 		
-		Person.breathe="µªÆø";
+		Person.breathe="æ°®æ°”";
 		
-		zhangXiang.breathe="ÑõÆø";
-		Person liuJiuZhou=new Person("Áõ¾ÅÖŞ");
-		String name=liuJiuZhou.setName("Áõ¾ÅÖŞ").setStatus("Ã¦").getName();
+		zhangXiang.breathe="æ°§æ°”";
+		Person liuJiuZhou=new Person("åˆ˜ä¹æ´²");
+		String name=liuJiuZhou.setName("åˆ˜ä¹æ´²").setStatus("å¿™").getName();
 		
 		zhangXiang.usePhoneCallPerson(mate, liuJiuZhou);
 		
