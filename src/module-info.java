@@ -7,8 +7,9 @@ module JavaBasedDemo {
 	requires java.logging;
 	requires java.sql;
 	requires java.sql.rowset;
-	requires commons.dbcp2;
-	requires c3p0;
 	requires java.desktop;
 	requires jdk.compiler;
+	requires java.base;
+	requires commons.dbcp2;
+	requires c3p0;
 }
