@@ -13,11 +13,13 @@ import java.lang.invoke.MethodType;
  */
 public class MethodHandleTest {
 	// 定义一个private类方法
+	@SuppressWarnings("unused")
 	private static void hello() {
 		System.out.println("Hello world!");
 	}
 
 	// 定义一个private实例方法
+	@SuppressWarnings("unused")
 	private String hello(String name) {
 		System.out.println("执行带参数的hello:" + name);
 		return name + "你好";
@@ -29,6 +31,7 @@ public class MethodHandleTest {
 	 */
 	public static void main(String[] args) throws Throwable {
 		// TODO Auto-generated method stub
+		
 		// 定义一个返回值为void,不带形参的方法类型,void.class首字母小写
 		MethodType methodType = MethodType.methodType(void.class);
 		// 使用MethodHandles.Lookup的findStatic获取类方法

@@ -21,7 +21,7 @@ public class VarHandleTest {
 	 */
 	public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
 		// TODO Auto-generated method stub
-		String[] strings = new String[] { "Java", "Kotlin", "Go" };
+		String[] strings = { "Java", "Kotlin", "Go" };
 		// 获取一个String[]数组的VarHandle对象
 		VarHandle varHandle = MethodHandles.arrayElementVarHandle(String[].class);
 		// 比较并设置:如果第三个元素是Go,则该元素被设为Lua
