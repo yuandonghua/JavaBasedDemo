@@ -20,8 +20,7 @@ public class FilenameFilterTest {
 		File f1 = new File("src/fit/hrkj/io/file");
 		// 使用Lambda表达式（目标类型为FilenameFilter）实现文件过滤器
 		// 如果文件名以.java结尾，或者文件对应一个路径，则返回true
-		String[] list = f1.list((dir, name) -> name.endsWith(".java") || new File(name).isDirectory());
-
+		String[] list = f1.list((dir, name) -> name.endsWith(".java") || new File(name).isDirectory());// 1️⃣
 		for (String name : list) {
 			System.out.println(name);
 		}
