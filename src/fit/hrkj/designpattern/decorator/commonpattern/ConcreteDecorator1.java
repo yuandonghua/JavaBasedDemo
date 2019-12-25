@@ -18,7 +18,7 @@ public class ConcreteDecorator1 extends Decorator {
 	}
 
 	private void method1() {
-		System.out.println("定义自己的修饰方法1");
+		System.out.println("定义自己的修饰方法method1");
 	}
 
 	@Override
