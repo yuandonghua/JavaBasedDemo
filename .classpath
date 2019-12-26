@@ -11,7 +11,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/mysql-connector-java-8.0.18.jar" sourcepath="/Users/ydh/Downloads/mysql-connector-java-8.0.18/src"/>
-	<classpathentry kind="lib" path="libs/c3p0-0.9.5.4.jar">
+	<classpathentry kind="lib" path="libs/c3p0-0.9.5.4.jar" sourcepath="SourceCode/C3p0/c3p0-0.9.5.4-sources.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -21,7 +21,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar">
+	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar" sourcepath="SourceCode/logging">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -31,7 +31,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/mchange-commons-java-0.2.15.jar">
+	<classpathentry kind="lib" path="libs/mchange-commons-java-0.2.15.jar" sourcepath="SourceCode/commons-java/mchange-commons-java-0.2.15-sources.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
