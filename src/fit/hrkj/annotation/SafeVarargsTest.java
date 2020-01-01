@@ -25,7 +25,7 @@ public class SafeVarargsTest {
 	}
 
 	@SafeVarargs
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void faultyMethod(List<String>... listStrArray) {//①
 		List<String>[] listArray = listStrArray;
 		
